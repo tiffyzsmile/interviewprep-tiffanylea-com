@@ -1,15 +1,15 @@
 const config = {
   gatsby: {
     pathPrefix: '/',
-    siteUrl: 'https://docs.tiffanylea.com',
-    gaTrackingId: null,
+    siteUrl: 'https://interviewprep.tiffanylea.com',
+    gaTrackingId: 'UA-179487815-1',
     trailingSlash: false,
   },
   header: {
-    logo: '/images/tiffany-lea__logo.svg',
+    logo: '/files/images/tiffany-lea__logo.svg',
     logoLink: 'https://interviewprep.tiffanylea.com/',
     title: '', // can be html
-    githubUrl: 'https://github.com/tiffyzsmile/tiffanylea-docs',
+    githubUrl: 'https://github.com/tiffyzsmile/interviewprep-tiffanylea-com',
     helpUrl: '',
     tweetText: '',
     social: `<li>
@@ -67,8 +67,8 @@ const config = {
   },
   siteMetadata: {
     title: 'Interview Prep | Tiffany Lea',
-    description: 'Documentation built with mdx. Powering interviewprep.tiffanylea.com ',
-    ogImage: null,
+    description: 'Documentation to help ramp up for Tech Interviews.',
+    ogImage: '/files/images/tiffany-lea__icon__black.svg',
     docsLocation: 'https://github.com/tiffyzsmile/interviewprep-tiffanylea-com/tree/master/content',
     favicon: '/files/images/tiffany-lea__icon__black.svg',
   },
