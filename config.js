@@ -6,8 +6,8 @@ const config = {
     trailingSlash: false,
   },
   header: {
-    logo: '/static/assets/images/tiffany-lea__logo.svg',
-    logoLink: 'https://docs.tiffanylea.com/',
+    logo: '/images/tiffany-lea__logo.svg',
+    logoLink: 'https://interviewprep.tiffanylea.com/',
     title: '', // can be html
     githubUrl: 'https://github.com/tiffyzsmile/tiffanylea-docs',
     helpUrl: '',
@@ -15,14 +15,14 @@ const config = {
     social: `<li>
 		    <a href="https://twitter.com/tiffyzsmile" target="_blank" rel="noopener">
 		      <div class="twitterBtn">
-		        <img src='/static/assets/images/twitter-brands-block.svg' alt={'Discord'}/>
+		        <img src='/files/images/twitter-brands-block.svg' alt={'Discord'}/>
 		      </div>
 		    </a>
 		  </li>
 			<li>
 		    <a href="https://discord.gg/TJt3pBB" target="_blank" rel="noopener">
 		      <div class="discordBtn">
-		        <img src='/static/assets/images/discord-brands-block.svg' alt={'Discord'}/>
+		        <img src='/files/images/discord-brands-block.svg' alt={'Discord'}/>
 		      </div>
 		    </a>
 		  </li>`,
@@ -70,7 +70,7 @@ const config = {
     description: 'Documentation built with mdx. Powering interviewprep.tiffanylea.com ',
     ogImage: null,
     docsLocation: 'https://github.com/tiffyzsmile/interviewprep-tiffanylea-com/tree/master/content',
-    favicon: '/static/assets/images/tiffany-lea__icon__black.svg',
+    favicon: '/files/images/tiffany-lea__icon__black.svg',
   },
   pwa: {
     enabled: false, // disabling this will also remove the existing service worker.
