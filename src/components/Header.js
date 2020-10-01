@@ -46,7 +46,7 @@ const StyledBgDiv = styled('div')`
   background-color: #f8f8f8;
   position: relative;
   display: none;
-  background: ${props => (props.isDarkThemeActive ? '#001932' : undefined)};
+  background: ${(props) => (props.isDarkThemeActive ? '#001932' : undefined)};
 
   @media (max-width: 767px) {
     display: block;
@@ -75,7 +75,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
         }
       }
     `}
-    render={data => {
+    render={(data) => {
       const logoImg = require('./images/logo.svg');
 
       const twitter = require('./images/twitter.svg');
@@ -90,7 +90,7 @@ const Header = ({ location, isDarkThemeActive, toggleActiveTheme }) => (
         },
       } = data;
 
-      const finalLogoLink = logo.link !== '' ? logo.link : 'https://hasura.io/';
+      const finalLogoLink = logo.link !== '' ? logo.link : 'https://tiffanylea.com/';
 
       return (
         <div className={'navBarWrapper'}>
