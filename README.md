@@ -1,5 +1,14 @@
 # About interviewprep.tiffanylea.com
 
+## Tech Used
+
+- **Site generation** via [Gatsby](https://www.gatsbyjs.com/)
+- **Version control** via Github [interviewprep-tiffanylea-com](https://github.com/tiffyzsmile/interviewprep-tiffanylea-com)
+- **Hosting** with AWS Amplify Console
+- **Continuous integration** via merge to master
+- **AWS region** us-west-2 aka US West (Oregon)
+- **AWS profile** none... only uses console no CLI or hosting
+
 ## Why it's own site?
 
 Originally I combined all docs in docs.tiffanylea.com but quickly realized I was dealing with 2 completely different use cases.
