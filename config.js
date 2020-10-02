@@ -39,6 +39,7 @@ const config = {
     forcedNavOrder: [
       '/algorithms', // add trailing slash if enabled above
       '/dom',
+      '/css',
       '/javascript',
       '/react',
       '/coding',

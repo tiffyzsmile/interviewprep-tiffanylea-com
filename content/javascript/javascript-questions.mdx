@@ -1,0 +1,201 @@
+---
+title: 'JavaScript Questions'
+metaTitle: 'JavaScript Questions | JavaScript | Interview Prep | Tiffany Lea'
+metaDescription: 'JavaScript Interview Questions'
+---
+
+# Arrays
+
+## Remove Duplicates from array without loop
+
+```javascript
+let nums = [1, 2, 2, 3];
+let uniNums = [...new Set(nums)]; // [1,2,3]
+```
+
+## Return total number of arguments without loop
+
+```javascript
+let x = function () {
+  return [].slice.call(arguments).length;
+};
+```
+
+# Random
+
+```javascript
+console.log(2 + '2'); // $: 22 // ?: + is a string operator
+console.log(2 - '2'); // $: 0 // ?: - is only a number operator
+
+// ----------------------
+
+function a() {
+  return 'hello';
+}
+const sentence = a`hi`; // same as a('hi')
+console.log(sentence); // $: "hello"
+
+// ----------------------
+
+let x = function () {
+  return; // <-- remove ; in doc // line break after return is interpreted as return;
+  {
+    message: 'hi';
+  }
+};
+
+console.log(x()); // $: undefined
+
+// ----------------------
+
+console.log(5 < 6 < 7); // true
+console.log(7 > 6 > 5); // false
+
+// ? 5 < 6 < 7 // true
+let step1 = 5 < 6 < 7; // 5 < 6 evaluates to true
+let step2 = true < 7; // true evaluates to 1
+let step3 = 1 < 7; // 1 is less than 7 // $: true
+
+// ? 7 > 6 > 5 // false
+let step1 = 7 > 6 > 5; // 7 > 6 evaluates to true
+let step2 = true > 5; // true evaluates to 1
+let step3 = 1 > 5; // 1 is not greater than 7 // $: false
+
+// ----------------------
+
+function y() {
+  console.log(this.length);
+}
+
+var x = {
+  length: 5,
+  method: function (z) {
+    // arguments = [y, 1]
+    // calling y on arguments returns arguments.length
+    // [y, 1].length
+    arguments[0]();
+  },
+};
+
+x.method(y, 1); // $: 2
+
+// ----------------------
+
+const x = 'constructor';
+console.log(x[x](01)); // $: "1"
+// x is String and has constructor function String()
+// String(01) outputs 1
+
+// ----------------------
+
+console.log(Math.max(1, 2, 3)); // $: 3
+console.log(Math.max()); // -infinity
+
+/**
+ * Lowest possible number is -infinity
+ * max() takes input[0] > -infinty
+ * then continues on to input[1] > previous max
+ * if nothing passed -infinity is still the max
+ * **/
+
+// ----------------------
+
+console.log(0.1 + 0.2); // $: 0.30000000000000004
+// all numbers in javascript are treated with floating point precision
+
+// ----------------------
+
+console.log('hi'.__proto__); // will be String() // $: ""
+console.log('hi'.__proto__.__proto__); // will be Object() // $: Object {}
+console.log('hi'.__proto__.__proto__.__proto__); // nothing higher than object // $: null
+
+// ----------------------
+
+console.log([] + []); // $: ""
+// empty string because arrays are typecast to strings
+// String([])  // $: ""
+
+// ----------------------
+```
+
+## What is Undefined?
+
+A variable has been declared, but no value set
+
+```javascript
+var declareMe; // declare variable with no value set
+typeof declareMe; // $:  "undefined"
+
+var declareMe = undefined; // can be manually set
+typeof declareMe; // $:  "undefined"
+
+var person = { name: 'tiffany' };
+typeof person.age; // non-existent object properties // $:  "undefined"
+```
+
+## What is Null?
+
+An assigned empty or non-existent value that explicitly means nothing
+
+```javascript
+typeof null; // $:  "object"
+```
+
+```javascript
+// checking for null
+console.log(null === 0); // false
+console.log(null === 0n); // false
+console.log(null === null); // true
+console.log(null === undefined); // false
+console.log(null === false); // false
+console.log(null === NaN); // false
+console.log(null === ''); // false
+
+// Generally, it is a good idea to catch both null and undefined values,
+// as both represent an absence of a value, thus checking for null is
+// one of the few times in JavaScript that using == is recommended
+// while otherwise === is generally recommended
+```
+
+## What is Void operator?
+
+The void operator evaluates the given expression and then returns undefined.
+
+### Use Cases
+
+```javascript
+// Immediately Invoked Function Expressions
+void (function iife() {
+  console.log('Executed!');
+})(); // $: "Executed!"
+
+// non-leaking Arrow Functions
+button.onclick = () => void doSomething();
+// ensures return value of doSomething changing from undefined to true will not change the onclick behavior
+```
+
+```html
+<!-- JavaScript URIs: Used to prevent page from refreshing -->
+<a href="javascript:void(0);">Click here to do nothing</a>
+
+<a href="javascript:void(document.body.style.backgroundColor='green');">
+  Click here for green background
+</a>
+```
+
+## Typeof
+
+```javascript
+// Primitive Type of
+typeof 'John'; // $: "string"
+typeof 3.14; // $: "number"
+typeof true; // $: "boolean"
+typeof false; // $: "boolean"
+typeof x; // $: "undefined" (if x has no value)
+
+// Complex Type of
+typeof { name: 'John', age: 34 }; // $:  "object"
+typeof [1, 2, 3, 4]; // $:  "object"
+typeof null; // $:  "object"
+typeof function myFunc() {}; // $: "function"
+```

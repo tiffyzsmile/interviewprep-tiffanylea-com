@@ -1,0 +1,55 @@
+---
+title: 'JavaScript Arrays'
+metaTitle: 'JavaScript Arrays | JavaScript | Interview Prep | Tiffany Lea'
+metaDescription: 'JavaScript Arrays'
+---
+
+```javascript
+// Arrays
+var fruits = ["banana", "orange", "apple"];
+var fruits2 = new Array("banana", "orange", "apple");
+
+typeof fruits; // $: "object"
+fruits.length; // returns the number of elements // $: 3
+fruits.concat(["kiwi", "mango"], ["grape", "strawberry"]); // concats fruits w/arrays
+fruits.filter(); // creates a new array with every element that pass a test
+
+// sorting arrays
+fruits.sort(); // sorts elements alphabetically // $: ["apple", "banana", "orange"]
+fruits.reverse(); // reverses order of elements // $: ["apple", "orange", "banana"]
+
+// converting to string
+fruits.toString(); // cannot define separator // $: banana,orange,apple
+fruits.join("-"); // can define separator // $: banana-orange-apple
+
+// adding items
+fruits.push("kiwi"); // adds items to end returns new length  $: 4
+fruits.unshift("kiwi"); // adds items to beginning returns new length $: 4
+fruits.splice(2, 0, "lemon", "kiwi"); // adds to index & returns removed $: []
+fruits[fruits.length] = "kiwi"; // adds items to end
+
+//removing items
+fruits.pop(); // removes last item and returns it $: apple
+fruits.shift(); // removes last item and returns it $: banana
+fruits.splice(0, 1); // removes 1st element returns removed items $: ["banana"]
+delete fruits[0]; // don't use // sets fruits[0] undefined [undefined, "ora...]
+
+// clone array (shallow)
+let newArr = fruits.slice(optIndex); // fastest in many JS runtimes
+let newArr = [].concat(fruits); //  combines two+ arrays to create a new one
+let newArr = [...fruits]; // ES6 Spread operator
+
+// deep clone array
+let numbers = [1, [2], [3, [4]], 5];
+
+JSON.parse(JSON.stringify(numbers)); // Using JavaScript
+_.cloneDeep(numbers); // Using Lodash
+
+// filtering array
+array.filter(function(currentValue, index, arr), thisValue)
+
+// array splice
+array.splice(index, howmanytoremove, item1, item3, itemX);
+
+
+```
