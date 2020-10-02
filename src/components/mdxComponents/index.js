@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Link } from 'gatsby';
 
 import CodeBlock from './codeBlock';
+import CodeWithHtml from './CodeWithHtml';
 import AnchorTag from './anchor';
 
 const StyledPre = styled('pre')`
@@ -36,6 +37,7 @@ export default {
     </StyledPre>
   ),
   code: CodeBlock,
+  CodeWithHtml,
   Link,
   a: AnchorTag,
   // TODO add `img`
