@@ -1,0 +1,38 @@
+---
+title: 'Javascript Functions'
+metaTitle: 'Javascript Functions | Javascript | Interview Prep | Tiffany Lea'
+metaDescription: 'Javascript Functions'
+---
+
+# Constructor Functions
+
+## What is a Constructor Function?
+
+- function that creates an object class
+- allows you to create multiple instances of the class
+
+## Example of Constructor Function
+
+```javascript
+function User(firstName, lastName, age, gender) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+  this.gender = gender;
+}
+
+var user1 = new User('John', 'Doe', 35, 'male');
+console.log(user1); // $: User {firstName: "John", lastName: "Doe", age: 35, gender: "male"}
+
+// Use prototype to add property to all instances of User
+User.prototype.emailDomain = '@gmail.com';
+
+console.log(user1.emailDomain); // @gmail.com
+
+// Use prototype to add functionality to all instances of User
+User.prototype.getEmail = function () {
+  return this.firstName + this.lastName + this.emailDomain;
+};
+
+user1.getEmail(); // $: "JohnDoe@gmail.com"
+```
