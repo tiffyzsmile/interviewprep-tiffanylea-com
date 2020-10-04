@@ -900,4 +900,8 @@ export const baseStyles = injectGlobal`
     margin: 5px !important;
   }
 
+  ul > li > p + ul {
+    margin-top:-24px !important;
+  }
+
 `;
