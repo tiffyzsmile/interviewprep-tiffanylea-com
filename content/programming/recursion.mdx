@@ -1,0 +1,40 @@
+---
+title: 'Recursion'
+metaTitle: 'Recursion | Programming | Interview Prep | Tiffany Lea'
+metaDescription: 'Recursion'
+---
+
+# What is Recursion?
+
+A function that calls itself.
+
+```javascript
+function func() {
+  if(/*base case */){ // when to stop the loop
+    return something;
+  } else { // recursive case
+    func(); // call this function
+  }
+}
+```
+
+# Factorial Example
+
+```javascript
+// Factorial (!)
+// 4! = 4 * 3 * 2 * 1 = 24
+// 3! = 3 * 2 * 1 = 6
+
+function factorial(num) {
+  // when to stop the loop
+  if (num === 1) {
+    return num;
+  } else {
+    // recursive case
+    // call this function
+    return num * factorial(num - 1);
+  }
+}
+```
+
+<img src="/files/images/recursion-call-stack.gif" alt="Breadth First vs Depth First" />
