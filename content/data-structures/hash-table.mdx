@@ -1,0 +1,168 @@
+---
+title: 'Hash Table'
+metaTitle: 'Hash Table | Data Structures | Interview Prep | Tiffany Lea'
+metaDescription: 'Hash Table'
+---
+
+# What is a Hash Table?
+
+Hash tables are used to store data that is in the form of a key associated with a value.
+
+- table of a pre-determined length
+- each of the cells of the table holds a piece of data which has a key and a value
+
+# Performance of Hash Tables
+
+- adding/removing: **O(1) | Constant Time | O of 1**
+  - constant time insert becomes O(n) when we need rehasing
+- searching: **O(1) | Constant Time | O of 1**
+
+\*They are not exactly constant time look up and insertion but if you make a hash table correctly with many many buckets and a good hashing function you shouldn't get too many collisions.
+
+## Memory Management and Hash Tables
+
+- Data doesn't store references to other pieces of data in the data structure
+
+# Use Cases for Hash Tables
+
+- Email provider storing addresses
+- Users of an application
+
+# Javascript Hash Table
+
+```javascript
+// Hash Table Constructor Function
+function HashTable(size) {
+  // defines where the buckets will be stored
+  // create empty array of this size
+  this.buckets = Array(size);
+
+  // keep track of how many buckets exist
+  this.numBuckets = this.buckets.length;
+}
+
+// Hash Node Constructor Function
+function HashNode(key, value, next) {
+  this.key = key;
+  this.value = value;
+  // defaults to null if no next is passed in
+  this.next = next || null;
+}
+
+/** NOTE: things to note for hash function below...
+ *
+ * String.charCodeAt(charIndex):
+ * Returns unique numerical representation (Unicode) of the char at a specified index in a string
+ *      'hello world'.charCodeAt(0); // 104
+ *
+ * JavaScript Remainder / Modulus (%):
+ * Returns remainder left over when one number is divided by a second number
+ * x % n is basically the same as saying “remainder of the division of x by n”.
+ * The result will always be greater than or equal to 0 and less than n.
+ *      7 % 3 ... 1
+ *      13 mod 5... 3 // verbal representation
+ *      15 % 5... 0 // nothing remains 5 goes into 15 3 times
+ */
+
+// take a string and hash into bucket number
+HashTable.prototype.hash = function (key) {
+  var total = 0;
+  // for each character in string 'key'
+  for (var i = 0; i < key.length; i++) {
+    // add it's unicode value to total
+    total += key.charCodeAt(i);
+  }
+  // see above notes...
+  // result is always greater than or equal to 0 and less than this.numBuckets
+  var bucket = total % this.numBuckets;
+  return bucket;
+};
+
+HashTable.prototype.insert = function (key, value) {
+  // find bucket this item needs to go in
+  var index = this.hash(key);
+
+  // is bucket empty
+  if (!this.buckets[index]) {
+    // if bucket empty just insert node
+    this.buckets[index] = new HashNode(key, value);
+  } else if (this.buckets[index].key === key) {
+    // else if first item matches passed in key... set it's value
+    // ?: while loop below does not account for the first node
+    this.buckets[index].value = value;
+  } else {
+    // else bucket isn't empty and first item is not item
+    var currentNode = this.buckets[index];
+
+    // loop over existing items to get to the last item
+    while (currentNode.next) {
+      // if node already exists
+      if (currentNode.next.key === key) {
+        // set it's value to the new value
+        currentNode.next.value = value;
+        // and then return before setting currentNode
+        // to break out of loop given we found the node
+        return;
+      }
+      // continue while loop by setting currentNode to next
+      currentNode = currentNode.next;
+    }
+
+    // if node doesn't exist add it to the buckets linked list
+    currentNode.next = new HashNode(key, value);
+  }
+};
+
+HashTable.prototype.get = function (key) {
+  // find buckets to look in
+  var index = this.hash(key);
+  // if no bucket at this key return null
+  if (!this.buckets[index]) {
+    return null;
+  } else {
+    // else check bucket items for passed in key
+    var currentNode = this.buckets[index];
+    while (currentNode) {
+      if (currentNode.key === key) {
+        return currentNode.value;
+      }
+      // set currentNode to the next item
+      currentNode = currentNode.next;
+    }
+
+    // couldn't find the key return null
+    return null;
+  }
+};
+
+HashTable.prototype.retrieveAll = function () {
+  // results array of all hash nodes
+  const all = [];
+
+  // loop through every bucket
+  for (var i = 0; i < this.numBuckets; i++) {
+    // set current node to first node in bucket
+    // if no nodes it will be null and while will not run
+    var currentNode = this.buckets[i];
+    while (currentNode) {
+      all.push(currentNode);
+      currentNode = currentNode.next;
+    }
+  }
+  return all;
+};
+
+var myHT = new HashTable(30);
+myHT.insert('Taffiny', 'Greensboro');
+myHT.insert('Tifafny', 'Los Angeles');
+myHT.insert('Tiffany', 'Los Angeles');
+myHT.insert('Beca', 'NYC');
+myHT.insert('Bace', 'Wilmington');
+myHT.insert('Baec', 'Greensboro');
+console.log('-------------------');
+myHT.insert('Tiffany', 'WEHO');
+console.log('-------------------');
+console.log(myHT.buckets);
+//console.log(myHT.get('Tiffany'));
+//console.log(myHT.retrieveAll());
+```
