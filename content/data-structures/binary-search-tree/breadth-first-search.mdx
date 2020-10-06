@@ -1,0 +1,64 @@
+---
+title: 'Breadth First Search'
+metaTitle: 'Breadth First Search | Binary Search Tree | Data Structures | Interview Prep | Tiffany Lea'
+metaDescription: 'Breadth First Search'
+---
+
+<img src="/files/images/bst-breadth-first-search.gif" alt="Breadth First Search" />
+
+# What is Breadth First Search?
+
+Works by first visiting all nodes in a level once, before proceeding to the next levels.
+
+The reason it is called “breadth-first”, is it widens or goes broad in its search strategy.
+
+# Javascript Breadth First Search
+
+```javascript
+// Binaary Tree Constructor Function
+function BST(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+//...//
+BST.prototype.breadthFirstTraversal = function (iteratorFunc) {
+  var queue = [this]; // add root node
+  while (queue.length) {
+    // remove & temp save first item in queue
+    var treeNode = queue.shift();
+
+    // run iteratorFunc on current node
+    iteratorFunc(treeNode.value);
+
+    // add child nodes to queue for later processing
+    if (treeNode.left) {
+      // if this node has a left child add it to the queue
+      queue.push(treeNode.left);
+    }
+
+    if (treeNode.right) {
+      // if this node has a right child add it to the queue
+      queue.push(treeNode.right);
+    }
+  }
+};
+
+// example simple iteratorFunc
+function log(value) {
+  console.log(value);
+}
+
+var bst = new BST(50);
+//...//
+bst.breadthFirstTraversal(log);
+```
+
+# Use Cases for Breadth First Search
+
+- hierarchy data
+  - employees of a company and who they report to
+    - top level would be executive employees
+    - next would be the people who work under them
+    - ... and so on all the way down
+  - military officers and rank

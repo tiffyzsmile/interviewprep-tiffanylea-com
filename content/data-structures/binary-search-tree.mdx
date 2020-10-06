@@ -1,0 +1,189 @@
+---
+title: 'Binary Search Tree'
+metaTitle: 'Binary Search Tree | Data Structures | Interview Prep | Tiffany Lea'
+metaDescription: 'Binary Search Tree'
+---
+
+<img src="/files/images/binary-search-tree-concept.png" alt="Binary Search Tree Concept" />
+
+# What is a Binary Search Tree?
+
+<img src="/files/images/binary-search-tree-terminology.png" alt="Binary Search Tree Terminology" />
+
+- a collection of nodes that are all connected together in a certain way
+- each node will contain some data or a value
+- each node will have up to two child nodes
+  - left node
+    - will be of lesser or equal value to their parent node
+  - right node
+    - will be of greater value than their parent node
+  - pattern continues all the way down the tree
+
+# Use Cases for Binary Search Tree
+
+- Dictionary
+- Phone book
+- Users (numeric ID)
+
+# Breadth First vs Depth First
+
+<img src="/files/images/breadth-first-vs-depth-first.png" alt="Breadth First vs Depth First" />
+
+- <Link to="/data-structures/binary-search-tree/depth-first-search">Depth First Search</Link>
+- <Link to="/data-structures/binary-search-tree/breadth-first-search">Breadth First Search</Link>
+
+# Javascript Binary Search Tree
+
+```javascript
+// Binaary Tree Constructor Function
+function BST(value) {
+  this.value = value;
+  this.left = null;
+  this.right = null;
+}
+
+// add node to tree
+BST.prototype.insert = function (value) {
+  if (value <= this.value) {
+    // if no left child
+    if (!this.left) {
+      this.left = new BST(value);
+    } else {
+      this.left.insert(value);
+    }
+  } else if (value > this.value) {
+    // if no right child
+    if (!this.right) {
+      this.right = new BST(value);
+    } else {
+      this.right.insert(value);
+    }
+  }
+};
+
+BST.prototype.contains = function (value) {
+  // does value match this nodes value
+  if (value === this.value) {
+    return true;
+  }
+  if (value < this.value) {
+    // if value less than this value
+    if (!this.left) {
+      // if no left node the value doesn't exist in tree
+      return false;
+    } else {
+      // check if left side contains value
+      return this.left.contains(value);
+    }
+  } else if (value > this.value) {
+    // else if value greater than this value
+    if (!this.right) {
+      // if no right node the value doesn't exist in tree
+      return false;
+    } else {
+      // check if right side contains value
+      return this.right.contains(value);
+    }
+  }
+};
+
+BST.prototype.depthFirstTraversal = function (iteratorFunc, order) {
+  // pre-order will iterate over parent node before child
+  if (order === 'pre-order') {
+    iteratorFunc(this.value);
+  }
+
+  if (this.left) {
+    // if left node exists, run depthFirstTraversal on it
+    this.left.depthFirstTraversal(iteratorFunc, order);
+  }
+
+  // in-order will run iteratorFunc on parent node after left child
+  if (order === 'in-order') {
+    iteratorFunc(this.value);
+  }
+
+  if (this.right) {
+    // if right node exists, run depthFirstTraversal on it
+    this.right.depthFirstTraversal(iteratorFunc, order);
+  }
+
+  // post-oder will run iteratorFunc on parent node after both children
+  if (order === 'post-order') {
+    iteratorFunc(this.value);
+  }
+};
+
+BST.prototype.breadthFirstTraversal = function (iteratorFunc) {
+  var queue = [this]; // add root node
+  while (queue.length) {
+    // remove & temp save first item in queue
+    var treeNode = queue.shift();
+
+    // run iteratorFunc on current node
+    iteratorFunc(treeNode.value);
+
+    // add child nodes to queue for later processing
+    if (treeNode.left) {
+      // if this node has a left child add it to the queue
+      queue.push(treeNode.left);
+    }
+
+    if (treeNode.right) {
+      // if this node has a right child add it to the queue
+      queue.push(treeNode.right);
+    }
+  }
+};
+
+BST.prototype.getMinVal = function () {
+  if (!this.left) {
+    // Base case: if no value smaller than this value
+    return this.value;
+  } else {
+    // Recursive case: keep getting smaller values
+    return this.left.getMinVal();
+  }
+};
+
+BST.prototype.getMaxVal = function () {
+  if (!this.right) {
+    // Base case: if no value larger than this value
+    return this.value;
+  } else {
+    // Recursive case: keep getting bigger values
+    return this.right.getMaxVal();
+  }
+};
+
+// example simple iteratorFunc
+function log(value) {
+  console.log(value);
+}
+
+var bst = new BST(50);
+
+// add nodes
+bst.insert(30);
+bst.insert(70);
+bst.insert(1000);
+bst.insert(65);
+bst.insert(65);
+bst.insert(5);
+bst.insert(10);
+
+console.log('Depth First - Pre-Order: ');
+bst.depthFirstTraversal(log, 'pre-order'); // 50, 30, 5, 10, 70, 65, 65, 1000
+
+console.log('Depth First - In-Order: ');
+bst.depthFirstTraversal(log, 'in-order'); // 5, 10, 30, 50, 65, 65, 70, 1000
+
+console.log('Depth First - Post-Order: ');
+bst.depthFirstTraversal(log, 'post-order'); // 10, 5, 30, 65, 65, 1000, 70, 50
+
+console.log('Breadth First: ');
+bst.breadthFirstTraversal(log); // 50, 30, 70, 5, 65, 1000, 10, 65
+
+console.log('Min: ', bst.getMinVal()); // 5
+console.log('Max: ', bst.getMaxVal()); // 1000
+```
