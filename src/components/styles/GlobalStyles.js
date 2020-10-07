@@ -904,4 +904,12 @@ export const baseStyles = injectGlobal`
     margin-top:-24px !important;
   }
 
+  .buildTime {
+    background-color: #f8f8f8;
+    padding: 18px 16px;
+    font-family: 'Poppins';
+    font-size: 14px;
+    font-weight: 600;
+    color: #001934;
+  }
 `;

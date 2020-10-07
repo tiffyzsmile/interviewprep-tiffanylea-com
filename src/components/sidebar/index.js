@@ -94,6 +94,9 @@ const SidebarLayout = ({ location }) => (
   <StaticQuery
     query={graphql`
       query {
+        site {
+          buildTime(formatString: " MMMM Do, YYYY")
+        }
         allMdx {
           edges {
             node {
@@ -106,7 +109,7 @@ const SidebarLayout = ({ location }) => (
         }
       }
     `}
-    render={({ allMdx }) => {
+    render={({ allMdx, site }) => {
       return (
         <Sidebar>
           {config.sidebar.title ? (
@@ -128,7 +131,9 @@ const SidebarLayout = ({ location }) => (
                 );
               }
             })}
+            <Divider />
           </ul>
+          <p className="buildTime">Last Build: {site.buildTime}</p>
         </Sidebar>
       );
     }}
