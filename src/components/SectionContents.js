@@ -4,8 +4,8 @@ import { StaticQuery, graphql, Link } from 'gatsby';
 const SectionContents = () => (
   <StaticQuery
     query={graphql`
-      query() {
-        allMdx( sort: { fields: fields___slug }) {
+      query {
+        allMdx(sort: { fields: fields___slug }) {
           edges {
             node {
               fields {
