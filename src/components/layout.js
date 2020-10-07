@@ -48,10 +48,8 @@ const Content = styled('main')`
 `;
 
 const MaxWidth = styled('div')`
-  @media only screen and (max-width: 50rem) {
-    width: 100%;
-    position: relative;
-  }
+  width: 100%;
+  position: relative;
 `;
 
 const LeftSideBarWidth = styled('div')`
