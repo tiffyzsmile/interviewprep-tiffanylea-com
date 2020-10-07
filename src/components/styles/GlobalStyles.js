@@ -912,4 +912,8 @@ export const baseStyles = injectGlobal`
     font-weight: 600;
     color: #001934;
   }
+
+  .lastModifiedTime {
+      padding: 15px;
+  }
 `;

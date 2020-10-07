@@ -92,13 +92,21 @@ export default class MDXRuntimeTest extends Component {
         </Helmet>
         <div className={'titleWrapper'}>
           <StyledHeading>{mdx.fields.title}</StyledHeading>
-          <Edit className={'mobileView'}>
-            {docsLocation && (
-              <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>
-                <img src={gitHub} alt={'Github logo'} /> Edit on GitHub
-              </Link>
-            )}
-          </Edit>
+          {/*<Edit className={'mobileView'}>*/}
+          {/*  {docsLocation && (*/}
+          {/*    <Link className={'gitBtn'} to={`${docsLocation}/${mdx.parent.relativePath}`}>*/}
+          {/*      <img src={gitHub} alt={'Github logo'} /> Edit on GitHub*/}
+          {/*    </Link>*/}
+          {/*  )}*/}
+          {/*</Edit>*/}
+          <p className="lastModifiedTime">
+            {new Date(mdx.parent.modifiedTime).toLocaleDateString('en-us', {
+              weekday: 'short',
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </p>
         </div>
         <StyledMainWrapper>
           <MDXRenderer>{mdx.body}</MDXRenderer>
@@ -130,6 +138,7 @@ export const pageQuery = graphql`
       parent {
         ... on File {
           relativePath
+          modifiedTime
         }
       }
       frontmatter {
