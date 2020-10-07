@@ -19,7 +19,10 @@ const SectionContents = () => (
     `}
     render={({ allMdx }) => {
       let navItems = [];
-      const pathname = window.location.pathname;
+      // sometimes path has trailing / sometimes it doesn't :/
+      const pathname = window.location.pathname.endsWith('/')
+        ? window.location.pathname
+        : `${window.location.pathname}/`;
 
       if (allMdx.edges !== undefined && allMdx.edges.length > 0) {
         navItems = allMdx.edges.map((item, index) => {
