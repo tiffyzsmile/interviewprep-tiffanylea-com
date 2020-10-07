@@ -1,7 +1,7 @@
 import React from 'react';
 import { StaticQuery, graphql, Link } from 'gatsby';
 
-const SectionContents = () => (
+const SectionContents = ({ path }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -19,20 +19,15 @@ const SectionContents = () => (
     `}
     render={({ allMdx }) => {
       let navItems = [];
-      // sometimes path has trailing / sometimes it doesn't :/
-      const pathname = window.location.pathname.endsWith('/')
-        ? window.location.pathname
-        : `${window.location.pathname}/`;
-
       if (allMdx.edges !== undefined && allMdx.edges.length > 0) {
         navItems = allMdx.edges.map((item, index) => {
           // does item exist, and exclude current page
-          if (item !== undefined && window.location.pathname !== item.node.fields.slug) {
+          if (item !== undefined && path !== item.node.fields.slug) {
             // is item part of this section
-            if (item.node.fields.slug.startsWith(pathname)) {
+            if (item.node.fields.slug.startsWith(path)) {
               // remove first '/' then split path into array
-              const pathArray = item.node.fields.slug.split(pathname)[1].split('/');
-              if (pathArray.length === 1) {
+              const pathArray = item.node.fields.slug.split(path)[1].split('/');
+              if (pathArray.length === 2) {
                 // we only want to show on base pages
                 return (
                   <li key={index}>

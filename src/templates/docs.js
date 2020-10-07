@@ -110,7 +110,7 @@ export default class MDXRuntimeTest extends Component {
           </p>
         </div>
         <StyledMainWrapper>
-          <SectionContents />
+          <SectionContents path={mdx.fields.slug} />
           <MDXRenderer>{mdx.body}</MDXRenderer>
         </StyledMainWrapper>
         <div className={'addPaddTopBottom'}>
