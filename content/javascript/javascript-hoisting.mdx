@@ -1,0 +1,23 @@
+---
+title: 'Javascript Hoisting'
+metaTitle: 'Javascript Hoisting | Javascript | Interview Prep | Tiffany Lea'
+metaDescription: 'Javascript Hoisting'
+---
+
+# What is Hoisting?
+
+When a Javascript file (or HTML document with Javascript in it) is loaded, function declarations are hoisted to the top of the code by the browser before any code is executed
+
+```javascript
+// This works!
+var add = function (num1, num2) {
+  return num1 + num2;
+};
+add(3, 3); // $:  6
+
+// This does not =(
+substract(7, 4); // $: Uncaught TypeError: subtract is not a function
+var subtract = function (num1, num2) {
+  return num1 - num2;
+};
+```

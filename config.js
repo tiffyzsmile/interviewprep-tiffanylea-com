@@ -38,24 +38,29 @@ const config = {
   sidebar: {
     forcedNavOrder: [
       '/algorithms', // add trailing slash if enabled above
-      '/dom',
-      '/css',
-      '/javascript',
-      '/react',
-      '/coding',
       '/behavioral',
+      '/coding',
+      '/css',
+      '/data-structures',
+      '/dom',
+      '/javascript',
+      '/programming',
       '/random',
+      '/react',
     ],
     collapsedNav: [
       '/algorithms', // add trailing slash if enabled above
       '/algorithms/search',
       '/algorithms/sort',
+      '/behavioral',
+      '/coding',
+      '/css',
+      '/data-structures',
       '/dom',
       '/javascript',
-      '/react',
-      '/coding',
-      '/behavioral',
+      '/programming',
       '/random',
+      '/react',
     ],
     links: [
       { text: 'Tiffany Lea', link: 'https://tiffanylea.com' },

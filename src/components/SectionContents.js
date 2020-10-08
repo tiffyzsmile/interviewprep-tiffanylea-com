@@ -12,6 +12,9 @@ const SectionContents = ({ path }) => (
                 title
                 slug
               }
+              frontmatter {
+                metaDescription
+              }
             }
           }
         }
@@ -19,6 +22,7 @@ const SectionContents = ({ path }) => (
     `}
     render={({ allMdx }) => {
       let navItems = [];
+      const isIndex = path === '/';
       if (allMdx.edges !== undefined && allMdx.edges.length > 0) {
         navItems = allMdx.edges.map((item, index) => {
           // does item exist, and exclude current page
@@ -34,6 +38,7 @@ const SectionContents = ({ path }) => (
                     <Link to={item.node.fields.slug}>
                       <strong>{item.node.fields.title}</strong>
                     </Link>
+                    {isIndex && <p>{item.node.frontmatter.metaDescription}</p>}
                   </li>
                 );
               }

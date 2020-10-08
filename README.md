@@ -63,7 +63,7 @@ So I went with the underlying tech of Gatsby in hopes to get less issues and eas
 
 ## Codeblocks
 
-The following is a code block with JavaScript language syntax highlighting.
+The following is a code block with Javascript language syntax highlighting.
 
 ```javascript
 import React from 'react';

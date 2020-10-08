@@ -1,0 +1,68 @@
+---
+title: 'Spiral 2D Array'
+metaTitle: 'Spiral 2D Array | Problems | Coding | Interview Prep | Tiffany Lea'
+metaDescription: 'Spiral 2D Array coding challenge'
+---
+
+# Q: Print a 2D array in spiral order
+
+```javascript
+const inputArray = [
+  [1, 2, 3, 4],
+  [5, 6, 7, 8],
+  [9, 10, 11, 12],
+  [13, 14, 15, 16],
+];
+
+const test = [1, 2, 3, 4, 8, 12, 16, 15, 14, 13, 9, 5, 6, 7, 11, 10];
+
+// dir var
+// 0 right
+// 1 down
+// 2 left
+// 3 up
+
+const printSpiral = (array, numRows, numCols) => {
+  let top = 0,
+    bottom = numRows - 1,
+    left = 0,
+    right = numCols - 1,
+    dir = 0,
+    values = [];
+
+  while (top <= bottom && left <= right) {
+    if (dir === 0) {
+      for (var i = left; i <= right; i++) {
+        values.push(array[top][i]);
+      }
+      top++;
+      dir = 1;
+    } else if (dir === 1) {
+      for (var i = top; i <= bottom; i++) {
+        values.push(array[i][right]);
+      }
+      right--;
+      dir = 2;
+    } else if (dir === 2) {
+      for (var i = right; i >= left; i--) {
+        values.push(array[bottom][i]);
+      }
+      bottom--;
+      dir = 3;
+    } else if (dir === 3) {
+      for (var i = bottom; i >= top; i--) {
+        values.push(array[i][left]);
+      }
+      left++;
+      dir = 0;
+    }
+  }
+  return values;
+};
+
+const answer = printSpiral(inputArray, 4, 4);
+
+const test1 = answer.toString() === test.toString();
+
+console.log('test1 pass? ', test1);
+```

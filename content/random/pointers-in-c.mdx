@@ -1,0 +1,110 @@
+---
+title: 'Pointers in C'
+metaTitle: 'Pointers in C | Random | Interview Prep | Tiffany Lea'
+metaDescription: 'Pointers in C... ick'
+---
+
+I feel like I've lost days of my life I'll never get back...
+
+🤮 I hope I never have to use this page
+
+# What are Pointers?
+
+- Variables that store address of another variable
+- Only in C/C++ languages
+
+# Example
+
+a is stored at location 104
+
+```
+int a;
+int *p;
+
+a = 5;
+p = &a; (address of a)
+
+print a     // 5
+print p     // 104
+print &a    // 104
+print *p    // 5
+
+*p = 8;
+print a     // 8
+```
+
+## Arrays
+
+collection of some data types
+
+```
+int a[5];
+```
+
+# Access/Modification
+
+```
+O(1)
+```
+
+```
+int main ()
+{
+    int A[5];
+    A[0] = 2;
+    A[1] = 4;
+    A[2] = 5;
+    A[3] = 8;
+    A[4] = 1;
+
+
+    printf ("%d \n", A);         // Base address
+    printf ("%d \n", *A);       // value of first element array[0]
+    printf ("%d \n", A + 1);    // address of the second element
+                                // 1 is actually the offset (size of datatype being used)
+                                // if base address is 100 last statement would return 104
+                                // 4 being the size an int takes in memory
+    printf ("%d \n", *(A + 1)); // prints the value of the second element (4)
+                                // if there is no second element it's prints random value
+                                // wtf and why am I learning this... I <3 Javascript
+}
+```
+
+Address --> Base + Offset
+
+```
+A[3] = *(A + 3)
+```
+
+# Pointers and Arrays
+
+```
+Element at i
+
+- Address --> &A[i] or (A + i)
+- Value --> A[i] or *(A + i)
+
+A --> pointer to base address
+A++ XXX Compilation Error
+
+int *p = A
+p++ WORKS
+
+```
+
+# Pointers and Multi Dimensional Arrays
+
+```
+int *p = B          // XXX compilation error
+                    // points to 1D array
+
+int (*p)[3] = B;    // works
+
+print B or &B[0]    // starting address of B[0]
+print *B or B[0] or &B[0][0]    // starting address of B[0]
+print (B+1)         // starting address + size of 1D array of 3 int (12)
+
+
+print *(B+1) or B[1] or &B[1][0]
+
+```
