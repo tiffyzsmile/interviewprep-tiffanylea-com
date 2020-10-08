@@ -48,20 +48,6 @@ const config = {
       '/random',
       '/react',
     ],
-    collapsedNav: [
-      '/algorithms', // add trailing slash if enabled above
-      '/algorithms/search',
-      '/algorithms/sort',
-      '/behavioral',
-      '/coding',
-      '/css',
-      '/data-structures',
-      '/dom',
-      '/javascript',
-      '/programming',
-      '/random',
-      '/react',
-    ],
     links: [
       { text: 'Tiffany Lea', link: 'https://tiffanylea.com' },
       { text: 'Tiffany Lea - Docs', link: 'https://docs.tiffanylea.com' },

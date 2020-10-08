@@ -120,13 +120,23 @@ const Tree = ({ edges }) => {
     return calculateTreeData(edges);
   });
 
-  const defaultCollapsed = {};
+  let location;
 
+  if (typeof document != 'undefined') {
+    location = document.location;
+  }
+
+  const currentPath =
+    location &&
+    (location.pathname.substr(-1) === '/' ? location.pathname.slice(0, -1) : location.pathname);
+
+  const defaultCollapsed = {};
   treeData.items.forEach((item) => {
-    if (config.sidebar.collapsedNav && config.sidebar.collapsedNav.includes(item.url)) {
-      defaultCollapsed[item.url] = true;
-    } else {
+    // if is the current page or item is a parent of the current page...
+    if (currentPath === item.url || currentPath.startsWith(item.url)) {
       defaultCollapsed[item.url] = false;
+    } else {
+      defaultCollapsed[item.url] = true;
     }
   });
   const [collapsed, setCollapsed] = useState(defaultCollapsed);

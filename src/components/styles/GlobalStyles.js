@@ -456,6 +456,9 @@ export const baseStyles = injectGlobal`
   .firstLevel ul li .collapser svg path {
     fill: #fff !important;
   }
+  .firstLevel ul li .collapser svg path {
+    fill: #001933 !important;
+  }
   .active .collapser > svg > path {
     fill: #001933 !important;
   }

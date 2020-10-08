@@ -18,10 +18,16 @@ const TreeNode = ({ className = '', setCollapsed, collapsed, url, title, items, 
   if (typeof document != 'undefined') {
     location = document.location;
   }
-  const active =
-    location && (location.pathname === url || location.pathname === config.gatsby.pathPrefix + url);
+  const currentPath =
+    location &&
+    (location.pathname.substr(-1) === '/' ? location.pathname.slice(0, -1) : location.pathname);
 
-  const calculatedClassName = `${className} item ${active ? 'active' : ''}`;
+  const active =
+    currentPath && (currentPath === url || currentPath === config.gatsby.pathPrefix + url);
+
+  const calculatedClassName = `${className} item ${active ? 'active' : ''} ${
+    isCollapsed ? 'closed' : 'open'
+  }`;
 
   return (
     <li className={calculatedClassName}>
