@@ -25,10 +25,10 @@ const SectionContents = ({ path }) => (
           if (item !== undefined && path !== item.node.fields.slug) {
             // is item part of this section
             if (item.node.fields.slug.startsWith(path)) {
-              // remove first '/' then split path into array
-              const pathArray = item.node.fields.slug.split(path)[1].split('/');
-              if (pathArray.length === 2) {
-                // we only want to show on base pages
+              // remove first matching part of url, then split it into paths (levels)
+              const pathArray = item.node.fields.slug.slice(path.length + 1).split('/');
+              if (pathArray.length === 1) {
+                // we only want to show immediate children
                 return (
                   <li key={index}>
                     <Link to={item.node.fields.slug}>
