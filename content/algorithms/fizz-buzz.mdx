@@ -1,0 +1,47 @@
+---
+title: Fizz Buzz
+metaTitle: 'Fizz Buzz | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Fizz Buzz algorithm'
+---
+
+# Why is Fizz Buzz asked?
+
+- problem solving abilities
+- fundamental javascript concepts
+
+# How is Fizz Buzz asked?
+
+Write a program that prints all the numbers from 1 to 100. For multiples of 3, instead of the number, print "Fizz", for multiples of 5 print "Buzz". For numbers which are multiples of both 3 and 5, print "FizzBuzz".
+
+# Fizz Buzz Broken Down
+
+- for each number from 1 to num (num is passed in or provided)
+  - if number is divisible by three log out the word Fizz
+  - if the number is divisible by five log out the word Buzz
+  - if a number is divisible by both 3 and 5 log out FizzBuzz
+
+# Javascript Fizz Buzz
+
+```javascript
+function fizzBuzz(num) {
+  // using 1 instead of 0 is intentional given 0 would print FizzBuzz
+  for (var i = 1; i <= num; i++) {
+    // if number is divisible by 15 it is divisible by both 3 and 5
+    if (i % 15 === 0) {
+      console.log('FizzBuzz');
+    } else if (i % 3 === 0) {
+      console.log('Fizz');
+    } else if (i % 5 === 0) {
+      console.log('Buzz');
+    } else {
+      console.log('i', i);
+    }
+  }
+}
+
+fizzBuzz(20);
+```
+
+# Additional Fizz Buzz Resources
+
+- [Twenty Ways to FizzBuzz](https://ditam.github.io/posts/fizzbuzz/)
