@@ -95,7 +95,7 @@ const SidebarLayout = ({ location }) => (
     query={graphql`
       query {
         site {
-          buildTime(formatString: " MMMM Do, YYYY")
+          buildTime
         }
         allMdx {
           edges {
@@ -133,7 +133,15 @@ const SidebarLayout = ({ location }) => (
             })}
             <Divider />
           </ul>
-          <p className="buildTime">Last Build: {site.buildTime}</p>
+          <p className="buildTime">
+            Last Build:{' '}
+            {new Date(site.buildTime).toLocaleDateString('en-us', {
+              weekday: 'short',
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+            })}
+          </p>
         </Sidebar>
       );
     }}
