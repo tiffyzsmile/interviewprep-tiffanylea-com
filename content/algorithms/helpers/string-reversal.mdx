@@ -1,0 +1,113 @@
+---
+title: String Reversal
+metaTitle: 'String Reversal | Helpers | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Various ways to reverse a string'
+---
+
+# Ways to reverse a string in Javascript
+
+- default methods (`split('').reverse().join ('')`)
+- decremented loop (`var i = str.length-1; i >=0; i--`)
+- recursion function
+
+# String Reversal Using default methods
+
+Reverse a string by using three default or built-in functions:
+
+```javascript
+// str = "world";
+function reverseStringVerbose(string) {
+  // step 1: split the string with String.prototype.split()
+  let splitStr = string.split(''); // ["w", "o", "r", "l","d"]
+
+  //step 2: reverse the new array with Array.prototype.reverse()
+  let reversedArr = splitStr.reverse(); // ["d", "l", "r", "o","w"]
+
+  //step 3: join the reverseArr with Array.prototype.join()
+  let joinStr = reversedArr.join(''); // "dlrow"
+
+  return joinStr;
+}
+
+// All together now... (chained)
+function reverseString(string) {
+  return string.split('').reverse().join('');
+}
+```
+
+# String Reversal Using Decremented Loop
+
+- instead of our usual incremental for loop
+  - `let i = 0;`: start at 0
+  - `i < string.length;`: keep going until you reach string length
+  - `i++`: increment i on each iteration
+- we will use the opposite of this to decrement the for loop
+
+  - `let i = string.length -1;`: start at string.length -1
+    - `-1` is to match indexing when getting each letter
+  - `i >= 0;`: keep going until you reach a number < 0
+  - `i--`: decrement (count down) i on each iteration
+
+```javascript
+function reverseString(string) {
+  let reversedString = '';
+  for (let i = string.length - 1; i >= 0; i--) {
+    reversedString += string[i];
+  }
+  return reversedString;
+}
+```
+
+# String Reversal Using Recurring Function
+
+```javascript
+function reverseString(string) {
+  if (string === '') {
+    // base case to stop looping
+    return '';
+  } else {
+    // recursive case
+    return reverseString(string.substr(1)) + string.charAt(0);
+  }
+}
+
+reverseString('test');
+// keeping all function breakdowns cause who knows what mood my brain will be in when I come back to review
+
+// input: test
+// run recurring function on string.substr(1) (string minus the first letter) then add first char in string to end
+// (est) + t =>
+// (st)  + e =>
+// (t) + s =>
+// () + t =>
+// input is empty... base case hit... start returning values
+// "" + t => t
+// t + s => ts
+// ts  + e => tse
+// tse + t => tset
+
+// (est) + t =>
+// (est) + t => (st)  + e =>
+// (est) + t => (st)  + e => (t) + s =>
+// (est) + t => (st)  + e => (t) + s => () + t =>
+// input is empty... base case hit... start returning values
+// (est) + t => (st)  + e => (t) + s => () + t <= ""
+// (est) + t => (st)  + e => (t) + s <= t
+// (est) + t => (st)  + e <= ts
+// (est) + t <= tse
+// tset
+
+// run recurring function on string.substr(1)
+// then add first char (string.charAt(0)) back to the end
+// example walk through using input: test
+// 1. runRec(test) => return runRec(est) + t;
+// 2. runRec(est) => return runRec(st) + e;
+// 3. runRec(st) => return runRec(t) + s;
+// 4. runRec(t) => return runRec() + t;
+// 5. runRec() => return ""; //since nothing was passed
+// 6. return "" => return "" + t;
+// 7. return t => return t + s;
+// 8. return ts => return ts + e;
+// 9. return tse => return tse + t;
+// 10: return tset; // back at step 1 finished
+```
