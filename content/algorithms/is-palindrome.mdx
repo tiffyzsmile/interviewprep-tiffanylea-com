@@ -1,0 +1,72 @@
+---
+title: Is Palindrome
+metaTitle: 'Ransom Note | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Ransom Note algorithm'
+---
+
+<img src="/files/images/palindrome-definition.jpeg" alt="Palindrome Definition" />
+
+# How is 'Is Palindrome' Asked?
+
+Given a string, return true if the string is a palindrome or false if it is not.
+
+- palindrome("madam") === true
+- palindrome("abcdefg") === false
+- palindrome("racecar")
+
+# Is Palindrome Questions to Ask
+
+- What is considered a palindrome?
+- What about strings that contain spaces, casing, special characters?
+- Could I use built-in methods?
+
+# How to detect Palindrome?
+
+<img src="/files/images/check-number-is-palindrome.png" alt="Palindrome Check" />
+
+# Is Palindrome Pseudocode
+
+```javascript
+// function that accepts a string
+// clean the string if needed
+// reverse the string in some way
+// compare reversed version to original
+```
+
+# Javascript Is Palindrome
+
+```javascript
+function isPalindrome(string) {
+  // string manipulation if needed to lowercase
+  string = string.toLowerCase();
+  var charactersArray = string.split('');
+
+  //  string manipulation if needed remove non a-z characters
+  var validCharacters = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  var lettersArray = [];
+  charactersArray.forEach((char) => {
+    if (validCharacters.indexOf(char) > -1) {
+      lettersArray.push(char);
+    }
+  });
+
+  // -----------------------
+  // THIS IS WHAT MATTERS
+  // -----------------------
+  // if letters in reverse match original letters
+  if (lettersArray.join('') === lettersArray.reverse().join('')) {
+    // return true for yes it isPalindrome
+    return true;
+  } else {
+    // else it's not a palindrome
+    return false;
+  }
+}
+
+isPalindrome("Madam I'm Adam"); // $: true
+isPalindrome("Madam I'm Adams"); // $: false
+```
+
+# Additional Is Palindrome Resources
+
+- [Algorithm: Palindrome](https://medium.com/@stevenpaulino1/algorithm-palindrome-6d0763c2f47c)
