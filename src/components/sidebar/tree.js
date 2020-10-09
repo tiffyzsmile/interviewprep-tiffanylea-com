@@ -127,8 +127,11 @@ const Tree = ({ edges }) => {
   }
 
   const currentPath =
-    location &&
-    (location.pathname.substr(-1) === '/' ? location.pathname.slice(0, -1) : location.pathname);
+    (location &&
+      (location.pathname.substr(-1) === '/'
+        ? location.pathname.slice(0, -1)
+        : location.pathname)) ||
+    '';
 
   const defaultCollapsed = {};
   treeData.items.forEach((item) => {
