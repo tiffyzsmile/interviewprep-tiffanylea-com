@@ -1,0 +1,81 @@
+---
+title: Ransom Note
+metaTitle: 'Ransom Note | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Ransom Note algorithm'
+---
+
+<img src="/files/images/algorithms-ransom-note.png" alt="Ransom Note Algorithm" />
+
+# How is Ransom Note Asked?
+
+Given an arbitrary ransom note string and another string containing letters (or words) from all the magazines, write a function that will return true if the ransom note can be constructed from the magazines; otherwise, it will return false.
+
+Each word in the magazine string can only be used once in your ransom note.
+
+# Ransom Note Problem
+
+- given a source string (magazine page) and a desired string (ransom note)
+- determine if the desired (ransom note) can be created
+  - using only the letters found in the source (magazine page)
+
+# Ransom Note Assumptions/Questions
+
+- casing: interviewer might specify all lower case a-z
+  - purpose of the exercise is not string manipulation so
+
+# Javascript Ransom Note
+
+```javascript
+/***
+ * Algorithm Complexity/Big O Notation
+ * O(n) + O(m) <-- n:magazineArray m:noteArray
+ * O(n + m) | O(n) | Linear Time Complexity
+ ***/
+
+function ransomNote(noteText, magazineText) {
+  // split strings into arrays of words
+  var noteArray = noteText.split(' ');
+  var magazineArray = magazineText.split(' ');
+
+  // create object to house magazine words and count
+  // { word: count }... { i: 2, am: 2, magazine: 1 ... }
+  var magazineObj = {};
+
+  // Big O:  O(n)
+  magazineArray.forEach((word) => {
+    // if word hasn't been added to object
+    // add it and set it's count to 0
+    if (!magazineObj[word]) {
+      magazineObj[word] = 0;
+    }
+    // increment count by 1 for this instance
+    magazineObj[word]++;
+  });
+
+  // we are optimistic we can make this note!
+  let noteIsPossible = 'true';
+  // Big O:  O(m)
+  noteArray.forEach((word) => {
+    // if word still has an instance available
+    // use it and remove from available count
+    if (magazineObj[word]) {
+      magazineObj[word]--;
+    } else {
+      // else we can't make the ransom note
+      noteIsPossible = false;
+    }
+  });
+  return noteIsPossible;
+}
+
+ransomNote(
+  'i am possible ransom note',
+  'i am a magazine page i am filled with possible words for ransom note'
+); // $: true
+
+ransomNote('i am impossible ransom note', 'i am a sparse magazine page'); // $: false
+```
+
+# Additional Ransom Note Resources
+
+- [Solving RansomNote in Four Ways](https://medium.com/@aaron_lu1/javascript-solving-ransomnote-in-three-ways-ba7287491246)
