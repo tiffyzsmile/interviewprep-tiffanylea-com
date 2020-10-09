@@ -1,0 +1,107 @@
+---
+title: Caesar Cipher
+metaTitle: 'Caesar Cipher | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Caesar Cipher algorithm'
+---
+
+<img src="/files/images/caesar-cipher.svg" alt="Caesar Cipher" />
+
+# Caesar Cipher Problem?
+
+Julius Caesar protected his confidential information by encrypting it using a cipher.
+
+- Caesar's cipher shifts each letter by a number of letters
+- If the shift takes you past the end of the alphabet
+  - rotate back to the front of the alphabet
+- Example: rotation by 3, wxyz would map to zabc
+
+```
+Original alphabet:      abcdefghijklmnopqrstuvwxyz
+Alphabet rotated +3:    defghijklmnopqrstuvwxyzabc
+```
+
+```
+Original alphabet:      abcdefghijklmnopqrstuvwxyz
+Alphabet rotated +2:    cdefghijklmnopqrstuvwxyzab
+
+a -> c
+b -> d
+c -> e
+d -> f
+-    -
+A -> C
+B -> D
+```
+
+# Caesar Cipher Assumptions/Questions
+
+- will the string already be lowercase or mixed casing?
+- can the number to shift by be negative?
+- the cipher only encrypts letters
+  - symbols, such as spaces and special characters remain unencrypted
+
+# Javascript Caesar Cipher
+
+```javascript
+/***
+ * Algorithm Complexity/Big O Notation
+ * O(n) | Linear Time Complexity
+ * n is length of string passed in
+ ***/
+
+function caesarCipher(str, num) {
+  // used to ensure we don't loop more than we need to
+  num = num % 26;
+
+  // we will handle casing below for now force lowercase
+  const lowerCaseString = str.toLowerCase();
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
+  let newString = '';
+
+  // loop over each character in the string
+  for (let i = 0; i < lowerCaseString.length; i++) {
+    const currentLetter = lowerCaseString[i];
+
+    // if not in alphabet it's a special character or space
+    if (alphabet.indexOf(currentLetter) < 0) {
+      // just add it to the newString
+      newString += currentLetter;
+
+      // and exit for loop for this iteration
+      continue;
+    }
+
+    const currentIndex = alphabet.indexOf(currentLetter);
+
+    // get new cipher index
+    let newIndex = currentIndex + num;
+
+    // if it's at the end of alphabet loop back to beginning
+    if (newIndex > 25) {
+      newIndex = newIndex - 26;
+    }
+
+    // if it's at the beginning of alphabet loop to end
+    if (newIndex < 0) {
+      newIndex = 26 + newIndex;
+    }
+
+    if (str[i] === str[i].toUpperCase()) {
+      // if it was originally uppercase
+      // add the uppercase cipher letter to string
+      newString += alphabet[newIndex].toUpperCase();
+    } else {
+      // else add the cipher letter to string
+      newString += alphabet[newIndex];
+    }
+  }
+
+  return newString;
+}
+
+caesarCipher('Abc Xyz', 3); // $ "Def Abc"
+caesarCipher('a-b-c', -3); // $: "x-y-z"
+caesarCipher('xyz', 29); // $: "abc"
+```
+
+# Additional Caesar Cipher Resources
