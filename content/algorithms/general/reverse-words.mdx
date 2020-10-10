@@ -1,0 +1,42 @@
+---
+title: Reverse Words
+metaTitle: 'Reverse Words | General Algorithms | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Reverse Words algorithm'
+---
+
+# Reverse Words Problem?
+
+Take in a string as a parameter, reverse every word in that string, and return the new string
+
+Every word in the string should be reversed, but the string as a whole should not be reversed
+
+```
+input: 'this is a string of words'
+output: 'siht si a gnirts fo sdrow'
+```
+
+# Reverse Words Clarification Questions?
+
+- can I used built in methods?
+  - no, do not use array.reverse() method
+
+# Reverse Words in Javascript
+
+```javascript
+function reverseWords(string) {
+  const wordsArr = string.split(' ');
+  const reversedWordsArr = [];
+
+  wordsArr.forEach((word) => {
+    let reversedWord = '';
+    for (let i = word.length - 1; i >= 0; i--) {
+      reversedWord += word[i];
+    }
+    reversedWordsArr.push(reversedWord);
+  });
+
+  return reversedWordsArr.join(' ');
+}
+
+reverseWords('This is a string - of words'); // $: "sihT si a gnirts - fo sdrow"
+```
