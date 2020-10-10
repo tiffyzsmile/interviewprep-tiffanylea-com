@@ -925,5 +925,8 @@ export const baseStyles = injectGlobal`
   img.floatRight {
     max-width: 200px;
   }
+  .imgPadding {
+    padding: 5px;
+  }
 
 `;

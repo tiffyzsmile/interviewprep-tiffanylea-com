@@ -1,21 +1,54 @@
 ---
-title: Merge Sort
-metaTitle: 'Merge Sort | Sort | Algorithms | Interview Prep | Tiffany Lea'
-metaDescription: 'Merge Sort'
+title: Merge Sort O(n·log(n))
+metaTitle: 'Merge Sort O(n·log(n)) | Sort | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Merge Sort O(n·log(n))'
 ---
+
+<img class="imgPadding" src="/files/images/merge-sort-2.gif" alt="Merge Sort" />
+<img class="imgPadding" src="/files/images/merge-sort-3.png" alt="Merge Sort" />
 
 # What is Merge Sort Algorithm?
 
-```javascript
-//
-// Merge Sort Implentation (Recursion)
-//
+- Divide input array into subarrays
+- Merge all the arrays to form the sorted array
 
+# Performance of Merge Sort
+
+<img src="/files/images/merge-sort-performance.gif" alt="Merge Sort Performance" />
+
+[Nice visual site](https://www.toptal.com/developers/sorting-algorithms/merge-sort)
+
+# Properties of Merge Sort
+
+- Stable
+- Θ(n) extra space for arrays (as shown)
+- Θ(log(n)) extra space for linked lists
+- Θ(n·log(n)) time
+- Not adaptive
+- Does not require random access to data
+
+# Merge Sort Pro's and Con's
+
+## Pro's
+
+- is efficient, even in the worst case runtime is O(n·log(n))
+- gives stable sort
+
+## Con's
+
+- takes lots of space: O(n)
+  - may slow down operations for the last data sets in some cases
+
+# Javascript Merge Sort
+
+```javascript
 function mergeSort(unsortedArray) {
+  // Base case to exit and not get to recursion below
   // No need to sort the array if the array only has one element or empty
   if (unsortedArray.length <= 1) {
     return unsortedArray;
   }
+
   // In order to divide the array in half, we need to figure out the middle
   const middle = Math.floor(unsortedArray.length / 2);
 
@@ -27,24 +60,27 @@ function mergeSort(unsortedArray) {
   return merge(mergeSort(left), mergeSort(right));
 }
 
-// Merge the two arrays: left and right
-function merge(left, right) {
-  let resultArray = [],
-    leftIndex = 0,
-    rightIndex = 0;
+// takes in two sorted arrays, merges those and returns one sorted array
+function merge(array1, array2) {
+  let result = [];
 
-  // We will concatenate values into the resultArray in order
-  while (leftIndex < left.length && rightIndex < right.length) {
-    if (left[leftIndex] < right[rightIndex]) {
-      resultArray.push(left[leftIndex]);
-      leftIndex++; // move left array cursor
+  // while neither arrays are empty
+  while (array1.length && array2.length) {
+    // if array1's first item is smallest
+    if (array1[0] < array2[0]) {
+      // remove it from array1 and add it to results array
+      result.push(array1.shift());
     } else {
-      resultArray.push(right[rightIndex]);
-      rightIndex++; // move right array cursor
+      // else array2's first item is smallest
+      // remove it from array2 and add it to results array
+      result.push(array2.shift());
     }
   }
 
-  // We need to concat to the resultArray because there will be one element left over after the while loop
-  return resultArray.concat(left.slice(leftIndex)).concat(right.slice(rightIndex));
+  // there will be one element left over after the while loop
+  // either array1 or array2, so we concat them both and return the sorted array
+  return result.concat(array1).concat(array2);
 }
+
+mergeSort([100, -34, 3, -101, -101, 9]); // $: [ -101, -101, -34, 3, 9, 100 ]
 ```
