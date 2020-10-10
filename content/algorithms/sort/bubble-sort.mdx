@@ -1,0 +1,67 @@
+---
+title: Bubble Sort O(n^2)
+metaTitle: 'Bubble Sort O(n^2) | Sort | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Bubble Sort O(n^2)'
+---
+
+<img src="/files/images/bubble-sort.gif" alt="Bubble Sort" />
+
+\*Image from [Algorithms](http://algorithm.wiki)
+
+# What is Bubble Sort
+
+This sorting algorithm is comparison-based algorithm in which each pair of adjacent elements is compared and the elements are swapped if they are not in order. This algorithm is not suitable for large data sets as its average and worst case complexity are of Ο(n2) where n is the number of items.
+
+- performs poorly in real world and is used primarily as an educational tool
+- more efficient algorithms such as quicksort, timsort, or merge sort are used
+- sometimes referred as Sinking sort
+  - **THIS IS UNCLEAR AND CHANGES PER SITE**
+    - some sites say 'bubbling up is the larger number moving to the right'
+    - others say it's 'sinking sort when the larger number moves to the right'
+    - personally..
+      - larger makes sense for 'sinking'
+      - smaller makes sense for 'bubbling'
+  - instead of 'Bubbling up' the smallest element to the left side
+  - Sinking sort moves the largest (sinking) element to the right side
+
+# Bubble Sort Pro's and Con's
+
+## Pro's
+
+- When data set is small, bubble sort is efficient
+- Easy to implement
+- Memory efficient
+- It gives stable sort
+
+## Con's
+
+- It is time-inefficient as it is having O(N<sup>2</sup>) time complexity
+- For large data set it is not very efficient as time grows exponentially
+
+# Bubble Sort in Javascript
+
+```javascript
+function bubbleSort(array) {
+  // decremental for loop (countdown i each iteration)
+  // we know we need to loop through `array.length - 1` times
+  for (let i = array.length; i > 0; i--) {
+    // nested for loop: for each item we need to
+    // loop through remaining items to compare
+    // each pass through should be 1 less items to sort
+    // i is counting down and we are looping while  j < i
+    for (let j = 0; j < i; j++) {
+      // if it's bigger (or smaller depending on how you do it)
+      if (array[j] > array[j + 1]) {
+        // swap them
+        let temp = array[j];
+        array[j] = array[j + 1];
+        array[j + 1] = temp;
+      }
+    }
+  }
+  // return sorted array
+  return array;
+}
+
+bubbleSort([10, 10, 8, -11, 3, 5, 5]); // $: [ -11,  3,  5, 5, 8, 10, 10 ]
+```
