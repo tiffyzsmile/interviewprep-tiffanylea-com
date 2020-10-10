@@ -6,7 +6,6 @@ import ThemeProvider from './theme/themeProvider';
 import mdxComponents from './mdxComponents';
 import Sidebar from './sidebar';
 import RightSidebar from './rightSidebar';
-import config from '../../config.js';
 
 const Wrapper = styled('div')`
   display: flex;
@@ -30,8 +29,9 @@ const Wrapper = styled('div')`
 `;
 
 const Content = styled('main')`
-  display: flex;
-  flex-grow: 1;
+  //  display: flex;
+  //  flex-grow: 1;
+  width: 80%;
   margin: 0px 88px;
   padding-top: 3rem;
   background: ${({ theme }) => theme.colors.background};
@@ -47,15 +47,6 @@ const Content = styled('main')`
   }
 `;
 
-const MaxWidth = styled('div')`
-  width: 100%;
-  position: relative;
-`;
-
-const LeftSideBarWidth = styled('div')`
-  width: 298px;
-`;
-
 const RightSideBarWidth = styled('div')`
   width: 224px;
 `;
@@ -64,18 +55,8 @@ const Layout = ({ children, location }) => (
   <ThemeProvider location={location}>
     <MDXProvider components={mdxComponents}>
       <Wrapper>
-        <LeftSideBarWidth className={'hiddenMobile'}>
-          <Sidebar location={location} />
-        </LeftSideBarWidth>
-        {config.sidebar.title ? (
-          <div
-            className={'sidebarTitle sideBarShow'}
-            dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
-          />
-        ) : null}
-        <Content>
-          <MaxWidth>{children}</MaxWidth>
-        </Content>
+        <Sidebar location={location} />
+        <Content>{children}</Content>
         <RightSideBarWidth className={'hiddenMobile'}>
           <RightSidebar location={location} />
         </RightSideBarWidth>

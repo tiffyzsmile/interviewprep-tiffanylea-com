@@ -25,6 +25,12 @@ const SidebarLayout = ({ location }) => (
       let navItems = [];
 
       let finalNavItems;
+      const currentPath =
+        (location &&
+          (location.pathname.substr(-1) === '/'
+            ? location.pathname.slice(0, -1)
+            : location.pathname)) ||
+        '';
 
       if (allMdx.edges !== undefined && allMdx.edges.length > 0) {
         const navItems = allMdx.edges.map((item, index) => {
@@ -32,7 +38,7 @@ const SidebarLayout = ({ location }) => (
 
           if (item !== undefined) {
             if (
-              item.node.fields.slug === location.pathname ||
+              item.node.fields.slug === currentPath ||
               config.gatsby.pathPrefix + item.node.fields.slug === location.pathname
             ) {
               if (item.node.tableOfContents.items) {
@@ -66,11 +72,7 @@ const SidebarLayout = ({ location }) => (
           </Sidebar>
         );
       } else {
-        return (
-          <Sidebar>
-            <ul></ul>
-          </Sidebar>
-        );
+        return false;
       }
     }}
   />

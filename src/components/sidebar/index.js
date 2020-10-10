@@ -1,5 +1,6 @@
 import React from 'react';
 import Tree from './tree';
+import LeftNav from '../LeftNav';
 import { StaticQuery, graphql } from 'gatsby';
 import styled from '@emotion/styled';
 import { ExternalLink } from 'react-feather';
@@ -111,38 +112,43 @@ const SidebarLayout = ({ location }) => (
     `}
     render={({ allMdx, site }) => {
       return (
-        <Sidebar>
-          {config.sidebar.title ? (
-            <div
-              className={'sidebarTitle hiddenMobile'}
-              dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
-            />
-          ) : null}
-          <ul className={'sideBarUL'}>
-            <Tree edges={allMdx.edges} />
-            {config.sidebar.links && config.sidebar.links.length > 0 && <Divider />}
-            {config.sidebar.links.map((link, key) => {
-              if (link.link !== '' && link.text !== '') {
-                return (
-                  <ListItem key={key} to={link.link}>
-                    {link.text}
-                    <ExternalLink size={14} />
-                  </ListItem>
-                );
-              }
-            })}
-            <Divider />
-          </ul>
-          <p className="buildTime">
-            Last Build:{' '}
-            {new Date(site.buildTime).toLocaleDateString('en-us', {
-              weekday: 'short',
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </p>
-        </Sidebar>
+        <>
+          <input type="checkbox" id="leftNavOpen" className="toggleInput" />
+          <div className="leftSidebar toggleMobileContent">
+            <Sidebar>
+              {config.sidebar.title ? (
+                <div
+                  className={'sidebarTitle hiddenMobile'}
+                  dangerouslySetInnerHTML={{ __html: config.sidebar.title }}
+                />
+              ) : null}
+              <LeftNav edges={allMdx.edges} />
+              <ul className={'sideBarUL'}>
+                {config.sidebar.links && config.sidebar.links.length > 0 && <Divider />}
+                {config.sidebar.links.map((link, key) => {
+                  if (link.link !== '' && link.text !== '') {
+                    return (
+                      <ListItem key={key} to={link.link}>
+                        {link.text}
+                        <ExternalLink size={14} />
+                      </ListItem>
+                    );
+                  }
+                })}
+                <Divider />
+              </ul>
+              <p className="buildTime">
+                Last Build:{' '}
+                {new Date(site.buildTime).toLocaleDateString('en-us', {
+                  weekday: 'short',
+                  year: 'numeric',
+                  month: 'short',
+                  day: 'numeric',
+                })}
+              </p>
+            </Sidebar>
+          </div>
+        </>
       );
     }}
   />

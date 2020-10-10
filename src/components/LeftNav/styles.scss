@@ -1,0 +1,112 @@
+.toggleInput {
+  position: absolute;
+  opacity: 0;
+  right: 0;
+}
+
+.leftNav {
+  background-color: #ffffff;
+  overflow: hidden;
+  margin: 0;
+  clear: both;
+  > ul {
+    > li {
+      color: #333;
+      border-bottom: 1px solid #333;
+      a {
+      }
+      > ul {
+        /* second level nav*/
+        background-color: #ffffff;
+        > li {
+          color: #333;
+          a {
+          }
+        }
+      }
+    }
+  }
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      position: relative;
+      list-style: none;
+      margin-left: 16px;
+      border-left: 1px solid #e6ecf1;
+      a {
+        text-decoration: none;
+        color: #333;
+        clear: both;
+        display: inline-block;
+        width: 85%;
+        line-height: 1.5;
+        padding: 7px 15px 7px 15px;
+      }
+    }
+  }
+  li label {
+    padding: 10px 0;
+    cursor: pointer;
+    // display: none;
+  }
+  li:has(> ul) label {
+    display: block;
+    padding: 5px 3% 5px 0;
+    text-align: right;
+    cursor: pointer;
+    //display: inline-block;
+    width: 22%;
+    font-size: 25px;
+  }
+
+  .toggleInput:not(:checked) {
+    /* menu closed */
+    & ~ label.open {
+      display: none;
+    } /* menu closed - hide menu open header */
+    & ~ .subMenu {
+      display: none;
+    } /* menu closed - hide menu content */
+  }
+  .toggleInput:checked {
+    /* menu open */
+    & ~ label.closed {
+      display: none;
+    } /* menu open - hide menu closed header */
+    & ~ .subMenu {
+      display: block;
+    } /* menu open - show menu content */
+  }
+}
+
+.toggleInput:not(:checked) {
+  & ~ .toggleContent {
+    display: none;
+  } /* generic toggle container */
+
+  & ~ .toggleMobileContent {
+    @media (max-width: 768px) {
+      display: none;
+    }
+  } /* mobile only toggle container, desktop always shows */
+}
+.toggleInput:checked {
+  & ~ .toggleContent {
+    display: block;
+  } /* generic toggle container */
+
+  & ~ .toggleMobileContent {
+    @media (max-width: 768px) {
+      display: block;
+    }
+  } /* generic toggle container */
+}
+
+.leftSidebar {
+  width: 298px;
+  @media (max-width: 768px) {
+    position: absolute;
+    z-index: 1000;
+  }
+}
