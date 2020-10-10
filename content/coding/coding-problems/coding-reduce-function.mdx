@@ -1,0 +1,122 @@
+---
+title: 'Write Reduce Function'
+metaTitle: 'Write Reduce Function | Problems | Coding | Interview Prep | Tiffany Lea'
+metaDescription: 'Write Reduce Function coding challenge'
+---
+
+# Write Reduce Function in Plain Javascript
+
+The reduce() method executes a reducer function (that you provide) on each element of the array, resulting in single output value.
+
+The reducer function takes four arguments:
+
+- Accumulator (acc)
+- Current Value (cur)
+- Current Index (idx)
+- Source Array (src)
+
+Your reducer function's returned value is assigned to the accumulator, whose value is remembered across each iteration throughout the array, and ultimately becomes the final, single resulting value
+
+# Original Built in Array.prototype.reduce()
+
+```javascript
+var callback = function (accumulator, currentValue) {
+  // example getting sum
+  return accumulator + currentValue;
+};
+
+// pass callback in to reduce function
+array.reduce(callback, initialValue);
+
+// Using arrow function
+array.reduce((accumulator, currentValue) => {
+  // use arrow function to pass your reducer function
+  return accumulator + currentValue;
+}, initialValue);
+```
+
+# Plain javascript Functional-ish
+
+```javascript
+const array = [1, 2, 3, 4];
+
+const reducerFunc = (acc, val) => {
+  return acc + val;
+};
+
+const reduce = (iterable, reduceFn, initialVal) => {
+  let accumulator;
+
+  for (let i of iterable) {
+    // if accumulator isn't set (first run through iterable)
+    if (!accumulator) {
+      // check if there is an initialVal passed in
+      if (initialVal) {
+        // if so set accumulator to initialVal
+        accumulator = initialVal;
+      } else {
+        // else no initialVal passed in
+        // set accumulator to i (first item in iterable)
+        accumulator = i;
+
+        // then break out of loop, we don't want to run reduceFn using 2 of item1
+        // ie: [item1,item2,item3] ... reduceFn(item1, item1)
+        continue;
+      }
+    }
+
+    // else call reduceFn on item
+    accumulator = reduceFn(accumulator, i);
+  }
+
+  return accumulator;
+};
+
+reduce(array, reducerFunc); // $: 10
+reduce(array, reducerFunc, 2); // $: 12
+```
+
+# Plain javascript Prototype-ish
+
+```javascript
+const array = [1, 2, 3, 4];
+
+const reducerFunc = (acc, val) => {
+  return acc + val;
+};
+
+// you can't use arrow function in declaration.. it messes with 'this' context
+Array.prototype.myReduce = function (reduceFn, initialVal) {
+  let accumulator;
+
+  // ONLY REAL DIFFERENCE IS WE ARE ITERATING OVER 'THIS'
+  // AND THIS WAY IS HARDER TO TEST AND EXTEND TO OTHER ITERABLES...
+  // ::EYE-ROLL::... FUNCTIONAL FOR LIFE <3
+  for (let i of this) {
+    // if accumulator isn't set (first run through iterable)
+    if (!accumulator) {
+      // check if there is an initialVal passed in
+      if (initialVal) {
+        // if so set accumulator to initialVal
+        accumulator = initialVal;
+      } else {
+        // else no initialVal passed in
+        // set accumulator to i (first item in iterable)
+        accumulator = i;
+
+        // then break out of loop, we don't want to run reduceFn using 2 of item1
+        // ie: [item1,item2,item3] ... reduceFn(item1, item1)
+        continue;
+      }
+    }
+
+    // else call reduceFn on item
+    accumulator = reduceFn(accumulator, i);
+  }
+
+  return accumulator;
+};
+
+array.myReduce(reducerFunc); // $: 10
+array.myReduce(reducerFunc, 2); // $: 12
+```
