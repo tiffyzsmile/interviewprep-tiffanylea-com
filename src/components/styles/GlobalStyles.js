@@ -919,4 +919,11 @@ export const baseStyles = injectGlobal`
   .lastModifiedTime {
       padding: 15px;
   }
+  .floatRight {
+    float: right;
+  }
+  img.floatRight {
+    max-width: 200px;
+  }
+
 `;
