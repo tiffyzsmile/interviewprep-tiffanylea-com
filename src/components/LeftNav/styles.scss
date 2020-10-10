@@ -27,8 +27,9 @@
     }
   }
   ul {
-    margin: 0;
+    margin: 0 !important; // overwriting theme styles ::eyeroll::
     padding: 0;
+    width: 100%;
     li {
       position: relative;
       list-style: none;
@@ -39,7 +40,7 @@
         color: #333;
         clear: both;
         display: inline-block;
-        width: 85%;
+        width: 100%;
         line-height: 1.5;
         padding: 7px 15px 7px 15px;
       }
@@ -48,6 +49,8 @@
   li label {
     padding: 10px 0;
     cursor: pointer;
+    position: absolute;
+    right: 15px;
     // display: none;
   }
   li:has(> ul) label {
@@ -104,7 +107,8 @@
 }
 
 .leftSidebar {
-  width: 298px;
+  background-color: #ffffff;
+  width: 350px;
   @media (max-width: 768px) {
     position: absolute;
     z-index: 1000;

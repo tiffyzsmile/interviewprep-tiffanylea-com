@@ -31,7 +31,10 @@ const Wrapper = styled('div')`
 const Content = styled('main')`
   //  display: flex;
   //  flex-grow: 1;
-  width: 80%;
+
+  @media (min-width: 768px) {
+    width: 80%;
+  }
   margin: 0px 88px;
   padding-top: 3rem;
   background: ${({ theme }) => theme.colors.background};
@@ -48,7 +51,7 @@ const Content = styled('main')`
 `;
 
 const RightSideBarWidth = styled('div')`
-  width: 224px;
+  width: 300px;
 `;
 
 const Layout = ({ children, location }) => (
