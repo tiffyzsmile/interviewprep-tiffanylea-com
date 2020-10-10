@@ -1,0 +1,43 @@
+---
+title: Reverse Array in Place
+metaTitle: 'Reverse Array in Place | General Algorithms | Algorithms | Interview Prep | Tiffany Lea'
+metaDescription: 'Reverse Array in Place algorithm'
+---
+
+<img
+  class="floatRight"
+  src="/files/images/reverse-array-in-place.png"
+  alt="Reverse an array in place"
+/>
+
+# Reverse Array in Place
+
+Reverse an array in place.
+
+- do not push elements into new array
+- do not use array.reverse() method
+
+# Javascript Reverse Array in Place
+
+```javascript
+function reverseArrayInPlace(arr) {
+  // loop over half items in array and switch out opposite counterpart
+  // input: [ 1, 2, 3, 4 ] <--- 4 items -> cut in half -> 2 loops
+  // loop 1: switch [ *1*, 2, 3, *4* ] // [ 4, 2, 3, 1 ]
+  // loop 2: switch [ 4, *2*, *3*, 1 ] // [ 4, 3, 2, 1 ]
+
+  for (let i = 0; i < arr.length / 2; i++) {
+    let tempVar = arr[i];
+    arr[i] = arr[arr.length - 1 - i];
+    arr[arr.length - 1 - i] = tempVar;
+  }
+
+  return arr;
+}
+
+// length is odd number
+reverseArrayInPlace([1, 2, 3, 4, 5]); // $: [ 5, 4, 3, 2, 1 ]
+
+// length is even number
+reverseArrayInPlace([1, 2, 3, 4]); // $: [ 4, 3, 2, 1 ]
+```
