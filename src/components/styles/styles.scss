@@ -1,0 +1,25 @@
+/* Tables */
+table {
+  padding: 0;
+  border-spacing: 0;
+  border-collapse: collapse;
+  margin: 5px 0 15px 0;
+  tr {
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    &:nth-child(2n) {
+      /* alternate background color per row */
+      background-color: #f8f8f8;
+    }
+    th,
+    td {
+      padding: 10px 13px;
+      border: 1px solid #a3a3a3;
+    }
+    th {
+      background-color: #333333;
+      color: #f8f8f8;
+    }
+  }
+}

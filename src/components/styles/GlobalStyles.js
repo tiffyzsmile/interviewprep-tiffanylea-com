@@ -317,8 +317,8 @@ export const baseStyles = injectGlobal`
     opacity: 0.7;
   }
   pre {
-    border: 0 !important;
-    background-color: rgb(245, 247, 249); /* !important; */
+//    border: 0 !important;
+//    background-color: rgb(245, 247, 249); /* !important; */
   }
 
   blockquote {
@@ -570,46 +570,6 @@ export const baseStyles = injectGlobal`
     flex: 1 1 0%;
   }
 
-  /* tables.css */
-  table {
-    padding: 0;
-  }
-
-  table tr {
-    border-top: 1px solid #cccccc;
-    margin: 0;
-    padding: 0;
-  }
-
-  table tr:nth-child(2n) {
-    background-color: #f8f8f8;
-  }
-
-  table tr th {
-    font-weight: bold;
-    border: 1px solid #cccccc;
-    text-align: left;
-    margin: 0;
-    padding: 6px 13px;
-  }
-
-  table tr td {
-    border: 1px solid #cccccc;
-    text-align: left;
-    margin: 0;
-    padding: 6px 13px;
-  }
-
-  table tr th :first-child,
-  table tr td :first-child {
-    margin-top: 0;
-  }
-
-  table tr th :last-child,
-  table tr td :last-child {
-    margin-bottom: 0;
-  }
-  /* end - tables.css */
 
   /* Image styling */
   img {
@@ -720,9 +680,7 @@ export const baseStyles = injectGlobal`
   }
 
   .pre {
-    font-size: 14px;
-    margin: 0px;
-    padding: 16px;
+    line-height: 1.5em;
     overflow: auto;
   }
 

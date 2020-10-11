@@ -7,6 +7,8 @@ import mdxComponents from './mdxComponents';
 import Sidebar from './sidebar';
 import RightSidebar from './rightSidebar';
 
+import './styles/styles.scss';
+
 const Wrapper = styled('div')`
   display: flex;
   justify-content: space-between;
@@ -38,10 +40,6 @@ const Content = styled('main')`
   margin: 0px 88px;
   padding-top: 3rem;
   background: ${({ theme }) => theme.colors.background};
-
-  table tr {
-    background: ${({ theme }) => theme.colors.background};
-  }
 
   @media only screen and (max-width: 1023px) {
     padding-left: 0;
