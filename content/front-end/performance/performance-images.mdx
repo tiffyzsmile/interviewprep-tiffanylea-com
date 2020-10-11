@@ -1,0 +1,30 @@
+---
+title: 'Images'
+metaTitle: 'Images | Performance | Front End Engineering | Interview Prep | Tiffany Lea'
+metaDescription: 'Images'
+---
+
+# General Image Optimization
+
+- use compression/optimization tools to lower file size
+- Use vector images whenever possible alongside your PNGs and JPGs
+- Use a CDN to serve up your images fast to visitors across the globe
+- In some cases, you might want to lazy load images for faster first-page render
+- Use Progressive images (speaks more to perceived performance)
+  - progressive images load immediately with a low resolution and then increase their resolution as the website loads completely
+
+# Choose the right File Format for Image
+
+<img class="imgPadding" src="/files/images/image-file-types.jpg" alt="Image File Types" />
+
+# Responsive Image Sizes
+
+<img
+  class="imgPadding"
+  src="/files/images/css-tricks-responsive-images-article.png"
+  alt="Load the right image and only the right image"
+/>
+
+Basically... don't load the bigger 800x600 image in a mobile view where the image is actually 200x100.
+
+- [CSS-Tricks: A Guide to Responsive Images](https://css-tricks.com/a-guide-to-the-responsive-images-syntax-in-html/#using-srcset)
