@@ -1,0 +1,146 @@
+---
+title: 'Javascript'
+metaTitle: 'Javascript | Questions | Technical | Interview Prep | Tiffany Lea'
+metaDescription: 'Javascript technical interview questions'
+---
+
+# Scope Question
+
+What will be printed on the console?
+
+```javascript
+(function () {
+  var a = (b = 5);
+})();
+
+console.log(b); // $: 5
+```
+
+- variable `a` is declared using the keyword `var` as local function variable
+- b is not defined using `var` and is assigned to the global scope
+- doesn't use strict mode (`'use strict';`) inside the function
+  - strict mode requires you to explicitly reference to the global scope
+    - `var a = window.b = 5;`
+
+```javascript
+(function () {
+  'use strict';
+  var a = (b = 5);
+})();
+
+console.log(b); // $: Uncaught ReferenceError: b is not defined
+```
+
+# Create “native” methods
+
+- define a repeatify function on the String object
+  - function accepts an integer for how many times the string should repeat
+  - returns the string repeated the number of times specified
+  - `'hello'.repeatify(3)` => `hellohellohello`
+
+```javascript
+String.prototype.repeatify =
+  String.prototype.repeatify ||
+  function (times) {
+    var str = '';
+
+    for (var i = 0; i < times; i++) {
+      str += this;
+    }
+    return str;
+  };
+```
+
+## Question is testing
+
+- knowledge of inheritance in JavaScript and the prototype property
+- ability to extend native data type functionalities (although this should not be done)
+- bonus for not overriding previously defined functions
+  - testing that the function didn’t exist before defining your own
+
+# Hoisting
+
+What’s the result of executing this code and why.
+
+```javascript
+function test() {
+  console.log(a); // $: undefined
+  console.log(foo()); // $: 2
+
+  var a = 1;
+  function foo() {
+    return 2;
+  }
+}
+
+test();
+```
+
+- both variables and functions are hoisted
+- variables don’t retain any assigned value
+  - at the time `a` is printed it has been declared but is undefined
+- below is a **hoisted view** of the code
+
+```javascript
+function test() {
+  var a;
+  function foo() {
+    return 2;
+  }
+
+  console.log(a);
+  console.log(foo());
+
+  a = 1;
+}
+
+test();
+```
+
+# How this works in JavaScript
+
+What is the result of the following code?
+
+```javascript
+var fullname = 'John Doe';
+var obj = {
+  fullname: 'Colin Ihrig',
+  prop: {
+    fullname: 'Aurelio De Rosa',
+    getFullname: function () {
+      return this.fullname;
+    },
+  },
+};
+
+console.log(obj.prop.getFullname()); // $: Aurelio De Rosa
+
+var test = obj.prop.getFullname;
+
+console.log(test()); // $: John Doe
+```
+
+- context of `this` is dependent on how a function is invoked, not how it’s defined
+- first `console.log()`, `getFullname()` is invoked as a function of the `obj.prop` object
+  - thus the context refers to `obj.prop` and the function returns the `obj.prop.fullname`
+- second `getFullname()` is assigned to the test variable
+  - thus the context refers to the global window object and the function returns the `window.fullname`
+
+# call() and apply()
+
+Fix the previous question’s issue so the last console.log() prints Aurelio De Rosa.
+
+```javascript
+//  ...code from above... //
+
+console.log(test.call(obj.prop)); // $: Aurelio De Rosa
+console.log(test.apply(obj.prop)); // $: Aurelio De Rosa
+```
+
+- forcing the context of the function using either call() or apply()
+  - in this case using call() or apply() would produce the same result
+  - main difference is how they accept arguments
+    - call() requires arguments to be specified separately
+      - `example.call(newContext, "arg1","arg2");`
+    - apply() takes arguments as an array
+      - `example.apply(newContext, ["arg1","arg2"]);`
