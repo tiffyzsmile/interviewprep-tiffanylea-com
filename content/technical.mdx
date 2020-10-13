@@ -3,3 +3,44 @@ title: 'Technical'
 metaTitle: 'Technical | Interview Prep | Tiffany Lea'
 metaDescription: 'Technical interview questions and code challenges that may get asked in a technical interview'
 ---
+
+# Technical Interview Process
+
+1. Interviewer asks question
+   - clarify question, yes even if you think it is clear
+     - the interviewer may provide some hints or tips to steer you in the right direction
+   - ask questions to help clarify scope and problem intention
+     - How big is the size of the input?
+     - How big is the range of values?
+     - Input values
+       - negative numbers
+       - floating points
+       - empty inputs
+       - special characters
+       - casing
+     - Are there duplicates within the input?
+     - What are some extreme cases of the input?
+     - How is the input stored?
+       - If you are given a dictionary of words, is it a list of strings or a trie?
+2. Explain your high level approach
+   - consider various approaches and explain out loud why it may or may not work
+     - your interviewer might drop hints and lead you toward the right path
+   - Start with a brute-force approach and communicate it to the interviewer
+     - explain the time and space complexities and clarify why it is bad
+       - you likely won't be coding the brute-force approach...
+     - the interviewer will usually pop the dreaded, “Can we do better?” question
+       - meaning they are looking for a more optimal approach
+   - Only start coding after you and your interviewer have agreed on an approach
+     - you have been given the green light
+3. Start coding
+   - general do's
+     - keep code format clean and easy to read
+     - use clear variable names (no single letter variables outside of iteration)
+
+# Finding Duplicates
+
+- Sort array, then compare each item to it's neighbor
+- use hashmap with value as key
+- Set() then back to array using spread
+- filter & index of
+- reduce
