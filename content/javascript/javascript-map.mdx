@@ -1,0 +1,26 @@
+---
+title: 'Javascript Map'
+metaTitle: 'Javascript Map | Javascript | Interview Prep | Tiffany Lea'
+metaDescription: 'Javascript Map'
+---
+
+# Methods of Map()
+
+```javascript
+var map = new Map();
+
+map.set('foo', 'bar'); // Map { 'foo' => 'bar' }
+
+map.has('foo'); // true
+map.get('foo'); // "bar"
+map.delete('foo'); // true
+
+map.forEach((itemVal, itemKey) => {
+  console.log(itemKey, itemVal);
+});
+map.values(); // [Map Iterator] { 'bar' }
+map.keys(); // [Map Iterator] { 'foo' }
+
+map.size; // 1
+map.clear();
+```

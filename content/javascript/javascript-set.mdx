@@ -1,0 +1,32 @@
+---
+title: 'Javascript Set'
+metaTitle: 'Javascript Set | Javascript | Interview Prep | Tiffany Lea'
+metaDescription: 'Javascript Set'
+---
+
+# Methods of Set()
+
+```javascript
+const mySet = new Set();
+
+mySet.add(1); // Set [ 1 ]
+mySet.add(['array']);
+mySet.add('some text'); // Set [ 1, 'some text' ]
+mySet.add({ a: 1, b: 2 });
+
+mySet.has(1); // true
+mySet.delete(1); // true
+mySet.size; // 3
+
+for (let item of mySet) {
+  console.log(item);
+}
+
+mySet.forEach((itemVal, itemValRepeated, entireSet) => {
+  console.log(itemVal, itemValRepeated, entireSet);
+});
+
+mySet.clear();
+
+const arrayFromSet = [...mySet];
+```
