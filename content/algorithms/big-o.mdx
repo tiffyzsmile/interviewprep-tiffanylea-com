@@ -22,7 +22,7 @@ O(n)
 |     | Notation    | Name                       | short                                   | Description                                                                            |
 | --- | ----------- | -------------------------- | --------------------------------------- | -------------------------------------------------------------------------------------- |
 | 🤩  | O(1)        | Constant                   | speed isn't determined by input size    | Always takes the same amount of time regardless of input size                          |
-| 😁  | O(log n)    | Logarithmic                | 10x data means 2x more time             | Amount of work is divided by 2 after every loop iteration (binary search)              |  |
+| 😁  | O(log n)    | Logarithmic                | 10x data means 2x more time             | Amount of work is divided by 2 after every loop iteration (binary search)              |
 | 🙂  | O(n)        | Linear                     | 10x more data means 10x more time       | How long it takes to run is directly based on how big N is (for loops)                 |
 | 😒  | O(n·log(n)) | Log-linear or Linearithmic | 10x more data means about 20x more time | nested loop where the inner loop runs in log n time. (quicksort, mergesort & heapsort) |
 | 😬  | O(n^2)      | Quadratic                  | 10x more data means 100x more time      | you have a loop that for each element then loops over every element in nested loop     |
@@ -111,9 +111,8 @@ function logAll(array) {
 }
 ```
 
-# Exponential Runtime | O(n^2) | O of n squared
+# Quadratic Runtime | O(n^2) | O of n squared
 
-- Runtime grows exponentially based on input size.
 - Iterates through the entire array and for every element it goes through the entire array again.
 
 ```javascript
@@ -124,5 +123,18 @@ function addAndLog(array) {
       console.log(array[i] + array[j]);
     }
   }
+}
+```
+
+# Exponential Runtime | O(2^n) | O of 2 raised to the n-th power
+
+- Runtime grows exponentially based on input size.
+
+```javascript
+// Big O Notation: O(2^n)
+function fibonacci(num) {
+  if (num <= 1) return 1;
+
+  return fibonacci(num - 1) + fibonacci(num - 2);
 }
 ```
