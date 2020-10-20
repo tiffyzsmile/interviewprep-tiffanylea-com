@@ -199,3 +199,55 @@ typeof [1, 2, 3, 4]; // $:  "object"
 typeof null; // $:  "object"
 typeof function myFunc() {}; // $: "function"
 ```
+
+# What is the difference between .call() and .apply()?
+
+Both `call()` and `apply()` call a function with a given `this` value as the first argument
+
+- The call() method accepts arguments individually
+  - `example.call(newContext, "arg1","arg2");`
+- The apply() method accepts arguments as an array
+  - `example.apply(newContext, ["arg1","arg2"]);`
+
+# What is the difference between .forEach() and .map() ?
+
+Both `.forEach()` and `.map()` iterate over items in a list and execute a function for each
+
+- `.forEach()` doesn't return any value
+- `.map()` returns new array with callback function return values
+
+# Flatten Array
+
+```javascript
+// recursive
+function flatten(arr) {
+  if (!Array.isArray(arr)) {
+    return [arr];
+  }
+
+  var array = [];
+  for (var i = 0; i < arr.length; i++) {
+    array = array.concat(flatten(arr[i]));
+  }
+  return array;
+}
+
+flatten([1, [2, [3]], [4]]); // => [1,2,3,4]
+
+// iterative
+function flatten(arr) {
+  var array = [];
+  while (arr.length) {
+    var value = arr.shift();
+    if (Array.isArray(value)) {
+      // this line preserve the order
+      arr = value.concat(arr);
+    } else {
+      array.push(value);
+    }
+  }
+  return array;
+}
+
+flatten([1, [2, [3]], [4]]); // => [1,2,3,4]
+```
